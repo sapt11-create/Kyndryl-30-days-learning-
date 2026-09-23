@@ -1,0 +1,187 @@
+## History of Git
+
+* **Created by:** Linus Torvalds in 2005.
+
+
+* **Background:** The Linux kernel development team previously used a proprietary Version Control System (VCS) called BitKeeper. In 2005, the free usage relationship was revoked, prompting Linus Torvalds to design a new distributed version control system from scratch.
+* **Core Design Goals:** High speed, simple design, non-linear development support (thousands of parallel branches), fully distributed architecture, and strong integrity guarantees for large-scale projects.
+
+---
+
+## What is GitHub?
+
+* **Description:** **GitHub** is a cloud-based hosting service for Git repositories. While **Git** is a local command-line tool that tracks code history, **GitHub** provides a web interface, centralized hosting, and collaboration features like pull requests, issue tracking, and access controls.
+
+---
+
+## Essential Git Commands
+
+### 1. `git init`
+
+* **Definition:** Initializes a new, empty Git repository in the current directory.
+* **Use Case:** Starting a new local project that you want to track with version control.
+* **Example:**
+```bash
+git init
+
+```
+
+
+
+### 2. `git add`
+
+* **Definition:** Adds changed files from the working directory to the staging area (index).
+* **Use Case:** Preparing specific modified or new files to be saved in the next commit.
+* **Example:**
+```bash
+git add index.html
+# Or add all files in current directory:
+git add .
+
+```
+
+
+
+### 3. `git commit`
+
+* **Definition:** Records staged changes into the local repository history along with a log message.
+* **Use Case:** Saving a checkpoint of your project progress locally.
+* **Example:**
+```bash
+git commit -m "Add homepage feature"
+
+```
+
+
+
+### 4. `git remote add`
+
+* **Definition:** Links your local Git repository to a remote server repository (like GitHub).
+* **Use Case:** Connecting a newly created local project to a remote GitHub URL for cloud synchronization.
+* **Example:**
+```bash
+git remote add origin https://github.com/username/project-name.git
+
+```
+
+
+
+### 5. `git push`
+
+* **Definition:** Uploads local commits to a remote repository branch.
+* **Use Case:** Publishing your local code updates to GitHub so others can see or work on them.
+* **Example:**
+```bash
+git push -u origin main
+
+```
+
+
+
+### 6. `git status`
+
+* **Definition:** Displays the status of the working tree (shows modified, untracked, or staged files).
+* **Use Case:** Checking which files have changed or are ready to be committed.
+* **Example:**
+```bash
+git status
+
+```
+
+
+
+### 7. `git clone`
+
+* **Definition:** Downloads an existing remote repository to your local computer.
+* **Use Case:** Getting a copy of a team project or open-source repository to start working on it.
+* **Example:**
+```bash
+git clone https://github.com/username/project-name.git
+
+```
+
+
+
+---
+
+## Practical Guide: Creating a Folder & Pushing a File to GitHub
+
+Follow these step-by-step instructions to create a local directory, add a text file, and push it to your GitHub repository.
+
+1. **Create and enter a new directory:** Terminal / Command Prompt.
+Create a new folder named `my-project` and navigate inside it.
+
+```bash
+mkdir my-project
+cd my-project
+
+```
+
+*Verification:* Run `pwd` (Linux/macOS) or `cd` (Windows) to verify you are inside `my-project`.
+
+
+2. **Initialize Git locally:** Local Repo Setup.
+Initialize the folder as a Git repository.
+
+```bash
+git init
+
+```
+
+*Verification:* Run `git status` — it should show `On branch main` (or `master`) with no commits yet.
+
+
+3. **Create a text file:** File Creation.
+Create a file named `notes.txt` with sample text.
+
+```bash
+echo "Hello, this is my first note!" > notes.txt
+
+```
+
+*Verification:* Run `cat notes.txt` (or open the folder in File Explorer) to confirm the file exists with content.
+
+
+4. **Stage the text file:** Git Staging.
+Move `notes.txt` to the Git staging area.
+
+```bash
+git add notes.txt
+
+```
+
+*Verification:* Run `git status` — `notes.txt` should now appear in green under *Changes to be committed*.
+
+
+5. **Commit the change:** Local Snapshot.
+Save the staged changes into local Git history with a message.
+
+```bash
+git commit -m "Add notes.txt file"
+
+```
+
+*Verification:* Run `git log` — you should see your commit hash and message listed.
+
+
+6. **Connect to GitHub remote:** Remote Linking.
+Link your local repo to your GitHub repository URL (replace the URL with your actual repository link from GitHub).
+
+```bash
+git remote add origin https://github.com/your-username/your-repo-name.git
+
+```
+
+*Verification:* Run `git remote -v` — it should display the push and fetch URLs you just set.
+
+
+7. **Push to GitHub:** Cloud Upload.
+Upload your commit to the main branch on GitHub.
+
+```bash
+git branch -M main
+git push -u origin main
+
+```
+
+*Verification:* Refresh your GitHub repository webpage in the browser — `notes.txt` will now be visible in your repo.
