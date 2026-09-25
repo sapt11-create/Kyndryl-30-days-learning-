@@ -1,0 +1,106 @@
+ Basic CI Workflow
+         Developer
+             │
+             │ Push / Commit Code
+             ▼
+      ┌─────────────────┐
+      │     TRIGGER     │
+      │ "When to start?"│
+      └────────┬────────┘
+               │
+               ▼
+      ┌─────────────────┐
+      │       JOB       │
+      │ "What should    │
+      │  be done?"      │
+      └────────┬────────┘
+               │
+               ▼
+       ┌───────────────┐
+       │     STEP 1    │
+       │ Checkout code │
+       └───────┬───────┘
+               │
+               ▼
+       ┌───────────────┐
+       │     STEP 2    │
+       │ Install deps  │
+       └───────┬───────┘
+               │
+               ▼
+       ┌───────────────┐
+       │     STEP 3    │
+       │ Run tests     │
+       └───────┬───────┘
+               │
+               ▼
+           Tests Pass
+               │
+               ▼
+       Code is Integrated
+Remember the 3 sections
+Section	Simple meaning	Example
+Trigger	When should CI start?	When code is pushed
+Job	What work should CI perform?	Build and test the project
+Step	Individual action inside a job	Checkout → Install → Test
+📄 Basic workflow example
+name: Basic CI
+
+on:
+  push:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run tests
+        run: pytest
+🔍 How to read it
+name
+ │
+ └── Workflow name
+     
+on
+ │
+ └── TRIGGER
+      "Run when code is pushed"
+
+jobs
+ │
+ └── JOB
+      "Run a testing job"
+          │
+          └── steps
+               ├── Checkout code
+               ├── Install dependencies
+               └── Run tests
+  CI in plain language
+
+CI = Automatically checking your code whenever you make changes.
+
+Instead of manually doing:
+
+"I changed the code → download it → install dependencies → run tests"
+
+CI does it automatically:
+
+Code pushed → Workflow starts → Job runs → Steps execute → Tests pass/fail
+
+ Easy memory trick
+
+Trigger → Job → Steps
+
+WHEN? → WHAT? → HOW?
+
+Trigger: WHEN should it run?
+Job: WHAT should it do?
+Steps: HOW should it do it?
+
+Done when: You can look at a basic workflow and immediately point out on = trigger, jobs = job, and steps = individual actions.
